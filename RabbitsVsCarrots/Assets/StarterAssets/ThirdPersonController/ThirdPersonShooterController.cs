@@ -12,13 +12,19 @@ public class ThirdPersonShooterController : MonoBehaviour {
     [SerializeField] private float aimSensitivity;
     [SerializeField] private LayerMask aimColliderLayerMask;
     [SerializeField] private Transform debugTransform;
+    [SerializeField] private Transform pfBulletProjectile;
+    [SerializeField] private Transform spawnBulletProsition;
+    [SerializeField] private Transform vfxHitGreen;
+    [SerializeField] private Transform vfxHitRed;
 
     private ThirdPersonController thirdPersonController;
     private StarterAssetsInputs starterAssetsInputs;
+    private Animator animator;
 
     private void Awake() {
         thirdPersonController = GetComponent<ThirdPersonController>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update() {
@@ -33,6 +39,7 @@ public class ThirdPersonShooterController : MonoBehaviour {
             aimVirtualCamera.gameObject.SetActive(true);
             thirdPersonController.SetSensitivity(aimSensitivity);
             thirdPersonController.SetRotateOnMove(false);
+            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
 
             Vector3 worldAimTarget = mouseWorldPosition;
             worldAimTarget.y = transform.position.y;
@@ -43,6 +50,13 @@ public class ThirdPersonShooterController : MonoBehaviour {
             aimVirtualCamera.gameObject.SetActive(false);
             thirdPersonController.SetSensitivity(normalSensitivity);
             thirdPersonController.SetRotateOnMove(true);
+            animator.SetLayerWeight(1 , Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
+        }
+
+        if(starterAssetsInputs.shoot){
+            Vector3 aimDir = (mouseWorldPosition - spawnBulletProsition.position).normalized;
+            Instantiate(pfBulletProjectile, spawnBulletProsition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            starterAssetsInputs.shoot = false;
         }
     }
 

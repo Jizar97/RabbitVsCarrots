@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5404182721096601010}
   - component: {fileID: 7774638777587223329}
   - component: {fileID: 8450260491228324322}
+  - component: {fileID: 2102824520760781654}
   m_Layer: 0
   m_Name: pfBulletProjectile
   m_TagString: Untagged
@@ -62,6 +63,20 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &2102824520760781654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446956669414509456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c78ce3cc510b2c64da5e32975ed5acc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxHitGreen: {fileID: 8440890177265290498, guid: e59cdf2c5563a634794be50ce7b4d92b, type: 3}
+  vfxHitRed: {fileID: 7959160121207969712, guid: 6797239f1e1fda9419d750b810fd6454, type: 3}
 --- !u!1 &8362873213982007298
 GameObject:
   m_ObjectHideFlags: 0
