@@ -16,7 +16,7 @@ namespace StarterAssets
 	{
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
-		public float MoveSpeed = 6.0f;
+		public float MoveSpeed = 20.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
 		public float SprintSpeed = 9.335f;
 		[Tooltip("How fast the character turns to face movement direction")]
@@ -71,6 +71,8 @@ namespace StarterAssets
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
+		private float vertical;
+		private float horizontal;
 
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
@@ -136,6 +138,8 @@ namespace StarterAssets
 			_animIDJump = Animator.StringToHash("Jump");
 			_animIDFreeFall = Animator.StringToHash("FreeFall");
 			_animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+			vertical = Animator.StringToHash("Vertical");
+			horizontal = Animator.StringToHash("Horizontal");
 		}
 
 		private void GroundedCheck()

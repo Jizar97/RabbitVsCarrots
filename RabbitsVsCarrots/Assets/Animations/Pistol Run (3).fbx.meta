@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: mixamo.com
+    second: Pistol_Run
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Pistol_Run
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
@@ -58,7 +58,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.32713756
+        functionName: PlayerFootstepSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4f81f10e5c46f4e41984c1d017c01a80, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.83643126
+        functionName: PlayerFootstepSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4f81f10e5c46f4e41984c1d017c01a80, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
