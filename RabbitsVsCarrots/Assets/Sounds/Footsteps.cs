@@ -24,6 +24,7 @@ public class Footsteps : MonoBehaviour
 
 
     private void PlayerFootstepSound() {
+
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer){
             animationSoundPlayer.Play();
