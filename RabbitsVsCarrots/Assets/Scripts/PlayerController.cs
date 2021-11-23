@@ -43,11 +43,18 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
+    public FirePistol firePistol;
+
+    private float tempoDeDisparo = .4f;
+
     int jumpAnimation;
     int recoilAnimation;
 
     int moveXAnimationParameterId;
     int moveZAnimationParameterId;
+
+    private bool podeDisparar = true;
+    private float cronometroDisparo;
 
     Vector2 currentAnimationBlendVector;
     Vector2 animationVelocity;
@@ -80,23 +87,35 @@ public class PlayerController : MonoBehaviour
     }
 
     private void ShootGun() {
-        //other.FirePistolSound();
-        RaycastHit hit;
-        GameObject bullet = GameObject.Instantiate(bulletPrefab, barrelTransform.position, Quaternion.identity, bulletParent);
-        BulletController bulletController = bullet.GetComponent<BulletController>();
-        if(Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity)){
+        if(podeDisparar == true){
+            firePistol.FirePistolSound();
+            RaycastHit hit;
+            GameObject bullet = GameObject.Instantiate(bulletPrefab, barrelTransform.position, Quaternion.identity, bulletParent);
+            BulletController bulletController = bullet.GetComponent<BulletController>();
+            if(Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity)){
                 bulletController.target = hit.point;
                 bulletController.hit = true;
+            }
+            else {
+                bulletController.target = cameraTransform.position + cameraTransform.forward * bulletHitMissDistance;
+                bulletController.hit = false;
+            }
+            animator.CrossFade(recoilAnimation, animationPlayTransition);
+            podeDisparar = false;
         }
-        else {
-            bulletController.target = cameraTransform.position + cameraTransform.forward * bulletHitMissDistance;
-            bulletController.hit = false;
-        }
-        animator.CrossFade(recoilAnimation, animationPlayTransition);
     }
 
     void Update()
     {
+
+        if(podeDisparar == false){
+            cronometroDisparo += Time.deltaTime;
+        }
+        if(cronometroDisparo >= tempoDeDisparo){
+            podeDisparar = true;
+            cronometroDisparo = 0;
+        }
+         
         aimTarget.position = cameraTransform.position + cameraTransform.forward * aimDistance;
 
         groundedPlayer = controller.isGrounded;

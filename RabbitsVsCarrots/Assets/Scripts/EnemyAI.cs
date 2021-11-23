@@ -6,13 +6,16 @@ public class EnemyAI : MonoBehaviour
     public Transform Player;
     private NavMeshAgent naveMesh;
     private float DistanciaDoPlayer, DistanciaDoAIPoint;
-    public float DistanciaDePercepcao = 30, DistanciaDeSeguir = 20, DistanciaDeAtacar = 2, VelocidadeDePasseio = 3, VelocidadeDePerseguicao = 6, TempoPorAtaque = 1.5f, DanoDoInimigo = 15;
+    public float DistanciaDePercepcao = 30, DistanciaDeSeguir = 20, DistanciaDeAtacar = 2, VelocidadeDePasseio = 3, VelocidadeDePerseguicao = 6, TempoPorAtaque = 1.5f;
+    public int DanoDoInimigo = 15;
     private bool VendoOPlayer;
     public Transform[] DestinosAleatorios;
     private int AIPointAtual;
     private bool PerseguindoAlgo, contadorPerseguindoAlgo, atacandoAlgo;
     private float cronometroDaPerseguicao, cronometroAtaque;
     public bool BPassear, BOlhar, BPerseguir, BAtacar;
+
+    public PlayerHealth playerHealth;
 
     void Start()
     {
@@ -101,7 +104,7 @@ public class EnemyAI : MonoBehaviour
         if(cronometroAtaque >= TempoPorAtaque && DistanciaDoPlayer <= DistanciaDeAtacar){
             atacandoAlgo = true;
             cronometroAtaque = 0;
-            PlayerHealth.vida = PlayerHealth.vida - DanoDoInimigo;
+            playerHealth.TakeDamage(DanoDoInimigo);
         } else if (cronometroAtaque >= TempoPorAtaque && DistanciaDoPlayer > DistanciaDeAtacar){
             atacandoAlgo = false;
             cronometroAtaque = 0;
@@ -147,6 +150,8 @@ public class EnemyAI : MonoBehaviour
         BPassear = false;
         BOlhar = false;
         BPerseguir = false;
+
         atacandoAlgo = true;
     }
+
 }

@@ -7,6 +7,7 @@ public class FirePistol : MonoBehaviour
 
     AudioSource animationSoundPlayer;
 
+
     void Start()
     {
         animationSoundPlayer = GetComponent<AudioSource>();
@@ -20,7 +21,6 @@ public class FirePistol : MonoBehaviour
 
 
     public void FirePistolSound() {
-        Debug.Log ("piu");
         animationSoundPlayer.Play();
     }
 }
