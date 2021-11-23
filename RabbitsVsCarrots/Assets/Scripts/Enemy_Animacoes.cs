@@ -7,8 +7,8 @@ public class Enemy_Animacoes : MonoBehaviour {
 
     public EnemyAI naveMesh;
     public AudioClip Atacar, Olhar, Passear, Perseguir;
-    public bool AldioTocando;
-    public float AldioDuracao;
+    public bool AudioTocando;
+    public float AudioDuracao;
     
     // Use this for initialization
     void Start () {
@@ -18,12 +18,12 @@ public class Enemy_Animacoes : MonoBehaviour {
     // Update is called once per frame
     void Update () {
  
-        if (AldioTocando == true) {/// AldioTocando ------------------------------------------------------
-        AldioDuracao += Time.deltaTime;
+        if (AudioTocando == true) {/// AudioTocando ------------------------------------------------------
+        AudioDuracao += Time.deltaTime;
 
-        if (AldioDuracao >= GetComponent<AudioSource> ().clip.length ) {
-            AldioTocando = false;
-            AldioDuracao = 0;
+        if (AudioDuracao >= GetComponent<AudioSource> ().clip.length ) {
+            AudioTocando = false;
+            AudioDuracao = 0;
         }
     }//----------------------------------------------------------------------------------------------------
 
@@ -41,16 +41,16 @@ public class Enemy_Animacoes : MonoBehaviour {
         GetComponent<Animator> ().SetBool ("Olhar", true);
 
         if (GetComponent<AudioSource> ().clip != Olhar) {
-            AldioTocando = false;
-            AldioDuracao = 0;
+            AudioTocando = false;
+            AudioDuracao = 0;
 
         Debug.Log ("Audio Trocado");
     }
 
-    if (AldioTocando == false) {
+    if (AudioTocando == false) {
         GetComponent<AudioSource> ().clip = Olhar;
         GetComponent<AudioSource> ().PlayOneShot (Olhar);
-        AldioTocando = true;
+        AudioTocando = true;
     }
 
     } else {
@@ -62,15 +62,15 @@ public class Enemy_Animacoes : MonoBehaviour {
         GetComponent<Animator> ().SetBool ("Passear", true);
 
         if (GetComponent<AudioSource> ().clip != Passear) {
-            AldioTocando = false;
-            AldioDuracao = 0;
+            AudioTocando = false;
+            AudioDuracao = 0;
             Debug.Log ("Audio Trocado");
         }
 
-        if (AldioTocando == false) {
+        if (AudioTocando == false) {
             GetComponent<AudioSource> ().clip = Passear;
             GetComponent<AudioSource> ().PlayOneShot (Passear);
-            AldioTocando = true;
+            AudioTocando = true;
         }
  
         } else {
@@ -81,15 +81,15 @@ public class Enemy_Animacoes : MonoBehaviour {
             GetComponent<Animator> ().SetBool ("Perseguir", true);
 
             if (GetComponent<AudioSource> ().clip != Perseguir) {
-                AldioTocando = false;
-                AldioDuracao = 0;
+                AudioTocando = false;
+                AudioDuracao = 0;
                 Debug.Log ("Audio Trocado");
             }
 
-            if (AldioTocando == false) {
+            if (AudioTocando == false) {
                 GetComponent<AudioSource> ().clip = Perseguir;
                 GetComponent<AudioSource> ().PlayOneShot (Perseguir);
-                AldioTocando = true;
+                AudioTocando = true;
             }
  
             } else {
