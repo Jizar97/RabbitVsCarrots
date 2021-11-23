@@ -62,14 +62,14 @@ ModelImporter:
       - time: 0.19873802
         functionName: PlayerFootstepSound
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 11500000, guid: 4f81f10e5c46f4e41984c1d017c01a80, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.68401486
         functionName: PlayerFootstepSound
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 11500000, guid: 4f81f10e5c46f4e41984c1d017c01a80, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

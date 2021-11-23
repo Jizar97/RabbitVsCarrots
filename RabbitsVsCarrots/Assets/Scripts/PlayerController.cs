@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void ShootGun() {
+        //other.FirePistolSound();
         RaycastHit hit;
         GameObject bullet = GameObject.Instantiate(bulletPrefab, barrelTransform.position, Quaternion.identity, bulletParent);
         BulletController bulletController = bullet.GetComponent<BulletController>();

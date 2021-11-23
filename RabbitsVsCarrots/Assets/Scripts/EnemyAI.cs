@@ -6,12 +6,14 @@ public class EnemyAI : MonoBehaviour
     public Transform Player;
     private NavMeshAgent naveMesh;
     private float DistanciaDoPlayer, DistanciaDoAIPoint;
-    public float DistanciaDePercepcao = 30, DistanciaDeSeguir = 20, DistanciaDeAtacar = 2, VelocidadeDePasseio = 3, VelocidadeDePerseguicao = 6, TempoPorAtaque = 1.5f, DanoDoInimigo = 40;
+    public float DistanciaDePercepcao = 30, DistanciaDeSeguir = 20, DistanciaDeAtacar = 2, VelocidadeDePasseio = 3, VelocidadeDePerseguicao = 6, TempoPorAtaque = 1.5f, DanoDoInimigo = 15;
     private bool VendoOPlayer;
     public Transform[] DestinosAleatorios;
     private int AIPointAtual;
     private bool PerseguindoAlgo, contadorPerseguindoAlgo, atacandoAlgo;
     private float cronometroDaPerseguicao, cronometroAtaque;
+    public bool BPassear, BOlhar, BPerseguir, BAtacar;
+
     void Start()
     {
         AIPointAtual = Random.Range(0, DestinosAleatorios.Length);
@@ -39,17 +41,20 @@ public class EnemyAI : MonoBehaviour
         }
         //================ CHECAGENS E DECISOES DO INIMIGO ================//
         if (DistanciaDoPlayer > DistanciaDePercepcao)
-        {
+        {   
+            BPassear = true;
             Passear();
         }
         if (DistanciaDoPlayer <= DistanciaDePercepcao && DistanciaDoPlayer > DistanciaDeSeguir)
         {
             if (VendoOPlayer == true)
             {
+                BOlhar = true;
                 Olhar();
             }
             else
             {
+                BPassear = true;
                 Passear();
             }
         }
@@ -57,18 +62,25 @@ public class EnemyAI : MonoBehaviour
         {
             if (VendoOPlayer == true)
             {
+                BPerseguir = true;
                 Perseguir();
                 PerseguindoAlgo = true;
             }
             else
             {
+                BPassear = true;
                 Passear();
             }
+        }
+        if (DistanciaDoPlayer <= DistanciaDeAtacar) {
+            BAtacar = true;
+            Atacar();
         }
         //COMANDOS DE PASSEAR
         if (DistanciaDoAIPoint <= 2)
         {
             AIPointAtual = Random.Range(0, DestinosAleatorios.Length);
+            BPassear = true;
             Passear();
         }
         //CONTADORES DE PERSEGUICAO
@@ -83,9 +95,24 @@ public class EnemyAI : MonoBehaviour
             PerseguindoAlgo = false;
         }
         // CONTADOR DE ATAQUE
+        if (atacandoAlgo == true){
+            cronometroAtaque += Time.deltaTime;
+        }
+        if(cronometroAtaque >= TempoPorAtaque && DistanciaDoPlayer <= DistanciaDeAtacar){
+            atacandoAlgo = true;
+            cronometroAtaque = 0;
+            PlayerHealth.vida = PlayerHealth.vida - DanoDoInimigo;
+        } else if (cronometroAtaque >= TempoPorAtaque && DistanciaDoPlayer > DistanciaDeAtacar){
+            atacandoAlgo = false;
+            cronometroAtaque = 0;
+        }
     }
     void Passear()
     {
+        BOlhar = false;
+        BPerseguir = false;
+        BAtacar = false;
+
         if (PerseguindoAlgo == false)
         {
             naveMesh.acceleration = 5;
@@ -99,13 +126,27 @@ public class EnemyAI : MonoBehaviour
     }
     void Olhar()
     {
+        BPassear = false;
+        BPerseguir = false;
+        BAtacar = false;
         naveMesh.speed = 0;
         transform.LookAt(Player);
     }
     void Perseguir()
     {
+        BPassear = false;
+        BOlhar = false;
+        BAtacar = false;
+
         naveMesh.acceleration = 8;
         naveMesh.speed = VelocidadeDePerseguicao;
         naveMesh.destination = Player.position;
+    }
+    void Atacar()
+    {
+        BPassear = false;
+        BOlhar = false;
+        BPerseguir = false;
+        atacandoAlgo = true;
     }
 }

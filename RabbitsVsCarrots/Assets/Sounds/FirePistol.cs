@@ -19,7 +19,8 @@ public class FirePistol : MonoBehaviour
 
 
 
-    private void FirePistolSound() {
+    public void FirePistolSound() {
+        Debug.Log ("piu");
         animationSoundPlayer.Play();
     }
 }
