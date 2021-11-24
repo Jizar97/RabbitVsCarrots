@@ -29,7 +29,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         ContactPoint contact = other.GetContact(0);
-        GameObject.Instantiate(bulletDecal, contact.point + contact.normal * .05f, Quaternion.LookRotation(contact.normal));
+        //GameObject.Instantiate(bulletDecal, contact.point + contact.normal * .05f, Quaternion.LookRotation(contact.normal));
         Destroy(gameObject);
     }
 }
