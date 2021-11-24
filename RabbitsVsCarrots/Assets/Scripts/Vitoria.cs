@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
+
+
+public class Vitoria : MonoBehaviour
 {
     
+    AudioSource animationSoundPlayer;
+
     public void Setup() {
         gameObject.SetActive(true);
+        animationSoundPlayer = GetComponent<AudioSource>();
+        animationSoundPlayer.Play();
     }
 
     public void Restart(){
