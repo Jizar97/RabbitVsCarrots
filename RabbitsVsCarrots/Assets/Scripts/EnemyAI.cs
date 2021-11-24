@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
     private int AIPointAtual;
     private bool PerseguindoAlgo, contadorPerseguindoAlgo, atacandoAlgo;
     private float cronometroDaPerseguicao, cronometroAtaque;
-    public bool BPassear, BOlhar, BPerseguir, BAtacar;
+    public bool BPassear, BOlhar, BPerseguir, BAtacar, BMorrer;
 
     public PlayerHealth playerHealth;
 
@@ -31,85 +31,92 @@ public class EnemyAI : MonoBehaviour
         Vector3 deOnde = transform.position;
         Vector3 paraOnde = Player.transform.position;
         Vector3 direction = paraOnde - deOnde;
-        if (Physics.Raycast(transform.position, direction, out hit, 1000) && DistanciaDoPlayer < DistanciaDePercepcao)
-        {
-            if (hit.collider.gameObject.CompareTag("Player"))
+
+        if (BMorrer == true){
+
+
+        } else {
+
+            if (Physics.Raycast(transform.position, direction, out hit, 1000) && DistanciaDoPlayer < DistanciaDePercepcao)
             {
-                VendoOPlayer = true;
+                if (hit.collider.gameObject.CompareTag("Player"))
+                {
+                    VendoOPlayer = true;
+                } else {
+                    VendoOPlayer = false;
+                }
             }
-            else
-            {
-                VendoOPlayer = false;
-            }
-        }
-        //================ CHECAGENS E DECISOES DO INIMIGO ================//
-        if (DistanciaDoPlayer > DistanciaDePercepcao)
-        {   
-            BPassear = true;
-            Passear();
-        }
-        if (DistanciaDoPlayer <= DistanciaDePercepcao && DistanciaDoPlayer > DistanciaDeSeguir)
-        {
-            if (VendoOPlayer == true)
-            {
-                BOlhar = true;
-                Olhar();
-            }
-            else
-            {
+            //================ CHECAGENS E DECISOES DO INIMIGO ================//
+            if (DistanciaDoPlayer > DistanciaDePercepcao)
+            {   
                 BPassear = true;
                 Passear();
             }
-        }
-        if (DistanciaDoPlayer <= DistanciaDeSeguir && DistanciaDoPlayer > DistanciaDeAtacar)
-        {
-            if (VendoOPlayer == true)
+            if (DistanciaDoPlayer <= DistanciaDePercepcao && DistanciaDoPlayer > DistanciaDeSeguir)
             {
-                BPerseguir = true;
-                Perseguir();
-                PerseguindoAlgo = true;
+                if (VendoOPlayer == true)
+                {
+                    BOlhar = true;
+                    Olhar();
+                } else {
+                    BPassear = true;
+                    Passear();
+                }
             }
-            else
+            if (DistanciaDoPlayer <= DistanciaDeSeguir && DistanciaDoPlayer > DistanciaDeAtacar)
             {
+                if (VendoOPlayer == true)
+                {
+                    BPerseguir = true;
+                    Perseguir();
+                    PerseguindoAlgo = true;
+                }
+                else
+                {
+                    BPassear = true;
+                    Passear();
+                }
+            }
+            if (DistanciaDoPlayer <= DistanciaDeAtacar) {
+                BAtacar = true;
+                Atacar();
+            }
+            //COMANDOS DE PASSEAR
+            if (DistanciaDoAIPoint <= 2)
+            {
+                AIPointAtual = Random.Range(0, DestinosAleatorios.Length);
                 BPassear = true;
                 Passear();
             }
+            //CONTADORES DE PERSEGUICAO
+            if (contadorPerseguindoAlgo == true)
+            {
+                cronometroDaPerseguicao += Time.deltaTime;
+            }
+            if (cronometroDaPerseguicao >= 5 && VendoOPlayer == false)
+            {
+                contadorPerseguindoAlgo = false;
+                cronometroDaPerseguicao = 0;
+                PerseguindoAlgo = false;
+            }
+            // CONTADOR DE ATAQUE
+            if (atacandoAlgo == true){
+                cronometroAtaque += Time.deltaTime;
+            }
+            if(cronometroAtaque >= TempoPorAtaque && DistanciaDoPlayer <= DistanciaDeAtacar){
+                atacandoAlgo = true;
+                cronometroAtaque = 0;
+                playerHealth.TakeDamage(DanoDoInimigo);
+            } else if (cronometroAtaque >= TempoPorAtaque && DistanciaDoPlayer > DistanciaDeAtacar){
+                atacandoAlgo = false;
+                cronometroAtaque = 0;
+            }
+
         }
-        if (DistanciaDoPlayer <= DistanciaDeAtacar) {
-            BAtacar = true;
-            Atacar();
-        }
-        //COMANDOS DE PASSEAR
-        if (DistanciaDoAIPoint <= 2)
-        {
-            AIPointAtual = Random.Range(0, DestinosAleatorios.Length);
-            BPassear = true;
-            Passear();
-        }
-        //CONTADORES DE PERSEGUICAO
-        if (contadorPerseguindoAlgo == true)
-        {
-            cronometroDaPerseguicao += Time.deltaTime;
-        }
-        if (cronometroDaPerseguicao >= 5 && VendoOPlayer == false)
-        {
-            contadorPerseguindoAlgo = false;
-            cronometroDaPerseguicao = 0;
-            PerseguindoAlgo = false;
-        }
-        // CONTADOR DE ATAQUE
-        if (atacandoAlgo == true){
-            cronometroAtaque += Time.deltaTime;
-        }
-        if(cronometroAtaque >= TempoPorAtaque && DistanciaDoPlayer <= DistanciaDeAtacar){
-            atacandoAlgo = true;
-            cronometroAtaque = 0;
-            playerHealth.TakeDamage(DanoDoInimigo);
-        } else if (cronometroAtaque >= TempoPorAtaque && DistanciaDoPlayer > DistanciaDeAtacar){
-            atacandoAlgo = false;
-            cronometroAtaque = 0;
-        }
+
+        
     }
+
     void Passear()
     {
         BOlhar = false;
@@ -152,6 +159,16 @@ public class EnemyAI : MonoBehaviour
         BPerseguir = false;
 
         atacandoAlgo = true;
+    }
+
+    public void Morrer()
+    {
+        BPassear = false;
+        BOlhar = false;
+        BPerseguir = false;
+        BAtacar = false;
+
+        BMorrer = true;
     }
 
 }

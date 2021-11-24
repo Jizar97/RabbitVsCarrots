@@ -7,7 +7,10 @@ public class EnemyHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
-    //public HealthBarScript healthBar;
+    public EnemyAI enemyAI;
+    public ToggleUI toggle;
+
+    [SerializeField] private Transform vfxHit;
 
     void Start(){
         currentHealth = maxHealth;
@@ -15,10 +18,12 @@ public class EnemyHealth : MonoBehaviour
 
     void Update(){
         if(currentHealth <= 0){
-            Destroy(gameObject);
+            enemyAI.Morrer();
+            StartCoroutine(Destroi());
             //destroiObj();
         }
     }
+
 /*
     private void OnTriggerEnter(Collider other) {
         if (other.GetComponent<BulletControler>() != null){
@@ -33,6 +38,8 @@ public class EnemyHealth : MonoBehaviour
 
         if(collision.gameObject.name == "Bullet2(Clone)"){
             TakeDamage(20);
+            toggle.HitMarker();
+            //Instantiate(vfxHit, transform.position, Quaternion.identity);
         }
     }
     
@@ -43,5 +50,10 @@ public class EnemyHealth : MonoBehaviour
 
     private void destroiObj(){
         
+    }
+
+    IEnumerator Destroi(){
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 }

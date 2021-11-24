@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirePistol : MonoBehaviour
+public class HitSound : MonoBehaviour
 {
-
     AudioSource animationSoundPlayer;
 
     //SerializeField] private Transform vfxFire;
-
 
 
     void Start()
@@ -23,7 +21,7 @@ public class FirePistol : MonoBehaviour
 
 
 
-    public void FirePistolSound() {
+    public void Toca() {
         animationSoundPlayer.Play();
         //Instantiate(vfxFire, transform.position, Quaternion.identity);
     }

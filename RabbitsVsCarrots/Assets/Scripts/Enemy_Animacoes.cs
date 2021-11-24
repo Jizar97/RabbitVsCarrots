@@ -27,6 +27,11 @@ public class Enemy_Animacoes : MonoBehaviour {
         }
     }//----------------------------------------------------------------------------------------------------
 
+    if (naveMesh.BMorrer == true) {
+        GetComponent<Animator> ().SetBool ("Morreu", true);
+    }
+
+
     if (naveMesh.BAtacar == true) {/// Atacar ------------------------------------------------------
         GetComponent<Animator> ().SetBool ("Atacar", true);
         GetComponent<AudioSource> ().clip = Atacar;
@@ -45,13 +50,13 @@ public class Enemy_Animacoes : MonoBehaviour {
             AudioDuracao = 0;
 
         Debug.Log ("Audio Trocado");
-    }
+        }
 
-    if (AudioTocando == false) {
-        GetComponent<AudioSource> ().clip = Olhar;
-        GetComponent<AudioSource> ().PlayOneShot (Olhar);
-        AudioTocando = true;
-    }
+        if (AudioTocando == false) {
+            GetComponent<AudioSource> ().clip = Olhar;
+            GetComponent<AudioSource> ().PlayOneShot (Olhar);
+            AudioTocando = true;
+        }
 
     } else {
         GetComponent<Animator> ().SetBool ("Olhar", false);
