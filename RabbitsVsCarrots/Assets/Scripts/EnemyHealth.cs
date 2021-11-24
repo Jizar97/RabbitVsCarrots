@@ -53,7 +53,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     IEnumerator Destroi(){
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 }
