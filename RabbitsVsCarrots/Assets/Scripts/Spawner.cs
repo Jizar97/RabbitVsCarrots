@@ -17,10 +17,11 @@ public class Spawner : MonoBehaviour
     }
 
     public void Spawn(int onda){
-        if(onda < 3 && onda > 1){
+        if(onda == 1){
+          
+        }
+        if(onda > 2){
             i++;
-        } else {
-            i += 2;
         }
         
         for (int j = 1; j <= i; j++){
