@@ -17,13 +17,9 @@ public class Spawner : MonoBehaviour
     }
 
     public void Spawn(int onda){
-        if(onda == 1){
-
-        }
-        if(onda == 2){
+        if(onda < 3 && onda > 1){
             i++;
-        }
-        if(onda > 2){
+        } else {
             i += 2;
         }
         
