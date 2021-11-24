@@ -37,7 +37,7 @@ public class EnemyHealth : MonoBehaviour
     void OnCollisionEnter(Collision collision){
 
         if(collision.gameObject.name == "Bullet2(Clone)"){
-            TakeDamage(20);
+            TakeDamage(50);
             toggle.HitMarker();
             //Instantiate(vfxHit, transform.position, Quaternion.identity);
         }
