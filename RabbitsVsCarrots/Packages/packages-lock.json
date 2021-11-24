@@ -21,7 +21,7 @@
     },
     "com.unity.cinemachine": {
       "version": "2.6.11",
-      "depth": 0,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
