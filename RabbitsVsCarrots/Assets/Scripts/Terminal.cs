@@ -18,6 +18,8 @@ public class Terminal : Interactable {
     }
 
     public override void Interact() {
-        Hacking();
+        if(telaHacking.fim == false){
+            Hacking();
+        }
     }
 }

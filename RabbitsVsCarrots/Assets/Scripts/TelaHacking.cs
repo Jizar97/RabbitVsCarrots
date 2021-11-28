@@ -9,17 +9,23 @@ public class TelaHacking : MonoBehaviour
     public Barreira barreira;
     public InputField input;
     public Text pergunta;
+    public Sucesso sucesso;
+    public Camada camadaUI;
 
     string resultado, resultadoEsperado;
 
     bool passou;
 
-    int i=1;
+    public bool fim;
+
+    int i=1, camada=1;
     
     public void Setup() {
         gameObject.SetActive(true);
+        sucesso.Desativar();
+        camadaUI.Setup(camada);
         Cursor.lockState = CursorLockMode.None;
-        Inicio(i);
+        Inicio();
 
     }
 
@@ -27,13 +33,36 @@ public class TelaHacking : MonoBehaviour
         resultado = input.text;
     }
 
-    public void Inicio(int x) {
-        if(x == 1){
-            Pergunta("3 * 8 = ?", "24");
-        } else if(x == 2){
-            Pergunta("12 + 4 * 2 = ?", "20");
-        } else {
-            Pergunta("(8 - 6) * 2 = ?", "4");
+    public void Inicio() {
+
+        if(camada == 1){
+            if(i == 1){
+                Pergunta("7 + 8 = ?", "15");
+            } else if(i == 2){
+                Pergunta("7 - 4", "3");
+            } else {
+                Pergunta("8 + 4 - 7 = ?", "5");
+            }
+        }
+
+        if(camada == 2){
+            if(i == 1){
+                Pergunta("2 * 8 = ?", "16");
+            } else if(i == 2){
+                Pergunta("3 * 7 = ?", "21");
+            } else {
+                Pergunta("27 / 3 = ?", "9");
+            }
+        }
+
+        if(camada == 3){
+            if(i == 1){
+                Pergunta("3 * 8 * 2 = ?", "48");
+            } else if(i == 2){
+                Pergunta("12 + 4 * 2 = ?", "20");
+            } else {
+                Pergunta("(8 - 6) * 2 = ?", "4");
+            }
         }
     }
 
@@ -48,19 +77,26 @@ public class TelaHacking : MonoBehaviour
     public void Ok() {
 
         if(resultadoEsperado == resultado){
+            sucesso.Setup(0);
             i++;
             if(i > 3){
-                barreira.Desativar();
+                if(camada == 3){
+                    Debug.Log ("Desativando");
+                    barreira.Desativar();
+                    fim = true;
+                    Exit();
+                } else {
+                    camada++;
+                    fim = true;
+                    camadaUI.Setup(camada);
+                i = 1;
                 Exit();
+                }
             }
-            Inicio(i);
+            Inicio();
+        } else {
+            sucesso.Setup(1);
         }
-        /*
-        if(passou == true){
-            pergunta.text = ("pintao");
-            passou = false;
-        }
-        */
     }
     
     public void Hackear(){
