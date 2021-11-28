@@ -10,60 +10,67 @@ public class TelaHacking : MonoBehaviour
     public InputField input;
     public Text pergunta;
 
-    string resultado;
+    string resultado, resultadoEsperado;
 
     bool passou;
+
+    int i=1;
     
     public void Setup() {
         gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
-        Inicio();
+        Inicio(i);
 
     }
 
     public void Update() {
-        
+        resultado = input.text;
     }
 
-    public void Inicio() {
-
-        pergunta.text = ("8 * 3 = ?");
-
-        while (resultado != "24")
-        {
-            resultado = input.text;
-        }
-
-        pergunta.text = ("8 * 3 = ?");
-
-        if(resultado == "24"){
-            passou = true;
+    public void Inicio(int x) {
+        if(x == 1){
+            Pergunta("3 * 8 = ?", "24");
+        } else if(x == 2){
+            Pergunta("12 + 4 * 2 = ?", "20");
         } else {
-
+            Pergunta("(8 - 6) * 2 = ?", "4");
         }
+    }
 
-        pergunta.text = ("12 + 4 * 2 = ?");
+    public void Pergunta(string eq, string rs){
+        pergunta.text = (eq);
 
-        if(resultado == "20"){
-            passou = true;
-        } else {
+        resultadoEsperado = (rs);
 
+        //resultado = input.text;
+    }
+
+    public void Ok() {
+
+        if(resultadoEsperado == resultado){
+            i++;
+            if(i > 3){
+                barreira.Desativar();
+                Exit();
+            }
+            Inicio(i);
         }
-
-        pergunta.text = ("(3 - 5) * 2 = ?");
-
-        if(resultado == "4"){
-            passou = true;
-        } else {
-
+        /*
+        if(passou == true){
+            pergunta.text = ("pintao");
+            passou = false;
         }
+        */
     }
     
     public void Hackear(){
+        /*
+        pergunta.text = ("pintao");
 
         if(passou == true){
             barreira.Desativar();
         }
+        */
     }
 
     public void Exit(){
