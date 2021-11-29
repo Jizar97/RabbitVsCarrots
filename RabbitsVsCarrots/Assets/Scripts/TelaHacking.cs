@@ -6,25 +6,30 @@ using UnityEngine.UI;
 public class TelaHacking : MonoBehaviour
 {
 
-    public Barreira barreira;
+    public Desativador camera1;
+    public Desativador camera2;
     public InputField input;
     public Text pergunta;
     public Sucesso sucesso;
     public Camada camadaUI;
+    public Loading loadingUI;
 
     string resultado, resultadoEsperado;
 
     bool passou;
 
-    public bool fim;
+    public bool fim, completou;
 
     int i=1, camada=1;
     
     public void Setup() {
+        //Time.timeScale = 0;
         gameObject.SetActive(true);
         sucesso.Desativar();
         camadaUI.Setup(camada);
         Cursor.lockState = CursorLockMode.None;
+        camera1.Desativar();
+        camera2.Desativar();
         Inicio();
 
     }
@@ -81,18 +86,20 @@ public class TelaHacking : MonoBehaviour
             i++;
             if(i > 3){
                 if(camada == 3){
-                    Debug.Log ("Desativando");
-                    barreira.Desativar();
                     fim = true;
+                    completou = true;
+                    loadingUI.Setup();
                     Exit();
                 } else {
                     camada++;
                     fim = true;
                     camadaUI.Setup(camada);
                 i = 1;
+                loadingUI.Setup();
                 Exit();
                 }
             }
+            input.text = ("");
             Inicio();
         } else {
             sucesso.Setup(1);
@@ -112,6 +119,9 @@ public class TelaHacking : MonoBehaviour
     public void Exit(){
         gameObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        camera1.Reativar();
+        camera2.Reativar();
+        //Time.timeScale = 1;
     }
     
 }

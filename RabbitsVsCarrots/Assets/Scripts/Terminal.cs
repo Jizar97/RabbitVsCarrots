@@ -14,7 +14,7 @@ public class Terminal : Interactable {
     }
 
     public override string GetDescription() {
-        return "Aperte [E] para acessar o terminal";
+        return "Pressione [E] para hackear";
     }
 
     public override void Interact() {
