@@ -8,10 +8,14 @@ public class ControleFase2 : MonoBehaviour
 
 
     public TelaHacking hacking;
+    public BossHealth boss;
+    public Desativador barreira;
     public Slider slider;
     public Text texto;
     private float timeRemaining;
     private const float timeMax = 10f;
+
+    int fase = 1;
 
 
     //private bool stopTimer;
@@ -22,14 +26,25 @@ public class ControleFase2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        slider.value = CalculateSliderValue();
+        if(fase == 1){
+            slider.value = CalculateSliderValue();
 
-        if(timeRemaining > 0){
+            if(timeRemaining > 0){
             timeRemaining -= Time.deltaTime;
+            }
+            if(timeRemaining <= 0){
+                hacking.fim = false;
+                texto.text = ("Pronto!");
+                if(hacking.completou == true){
+                    barreira.Desativar();
+                    boss.Acordar();
+                    fase++;
+                }
+            }
         }
-        if(timeRemaining <= 0){
-            hacking.fim = false;
-            texto.text = ("Pronto!");
+
+        if(fase == 2){
+            
         }
     }
 

@@ -31,13 +31,10 @@ public class Loading : MonoBehaviour
     void Update()
     {
         transform.rotation = cam.transform.rotation;
-
+        /*
         if(hacking.completou == true && texto.text == "Pronto!"){
             barreira.Desativar();
         }
-    }
-
-    void Completo() {
-        
+        */
     }
 }

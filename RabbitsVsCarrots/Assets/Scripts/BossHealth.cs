@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class BossHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public int maxHealth = 1000;
     public int currentHealth;
 
-    public EnemyAI enemyAI;
+    //public EnemyAI enemyAI;
     public ToggleUI toggle;
+    public Desativador barraVida;
 
     [SerializeField] private Transform vfxHit;
 
@@ -18,7 +19,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Update(){
         if(currentHealth <= 0){
-            enemyAI.Morrer();
+            //enemyAI.Morrer();
             StartCoroutine(Destroi());
             //destroiObj();
         }
@@ -38,8 +39,8 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
     }
 
-    private void destroiObj(){
-        
+    public void Acordar(){
+        barraVida.Reativar();
     }
 
     IEnumerator Destroi(){
