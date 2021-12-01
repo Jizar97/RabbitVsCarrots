@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private GameObject enemy;
 
-    int i=0;
+    public int i=0, fase=1;
 
     void Start(){
     }
@@ -17,11 +17,19 @@ public class Spawner : MonoBehaviour
     }
 
     public void Spawn(int onda){
+        if(fase == 1){
+            i++;
 
-        i++;
-        
-        for (int j = 1; j <= i; j++){
-            GameObject.Instantiate(enemy, transform.position, Quaternion.identity);
+            for (int j = 1; j <= i; j++){
+                GameObject.Instantiate(enemy, transform.position, Quaternion.identity);
+            }
+
+        } else {
+
+            for (int j = 1; j <= onda; j++){
+                GameObject.Instantiate(enemy, transform.position, Quaternion.identity);
+            }
+
         }
         
     }

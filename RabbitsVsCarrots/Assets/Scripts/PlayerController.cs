@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     int moveZAnimationParameterId;
 
     public bool playerLiberado = true;
-    private bool podeDisparar = true;
+    public bool podeDisparar = true;
     private float cronometroDisparo;
 
     Vector2 currentAnimationBlendVector;

@@ -15,6 +15,10 @@ public class MainMenu : MonoBehaviour
         
     }
 
+    public void Exit(){
+        Application.Quit();
+    }
+
     IEnumerator Esperar(){
         rawImage.Reativar();
         videoPlayer.Reativar();

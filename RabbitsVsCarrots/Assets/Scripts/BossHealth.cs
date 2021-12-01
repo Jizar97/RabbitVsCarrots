@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class BossHealth : MonoBehaviour
 {
-    public int maxHealth = 1000;
+    public int maxHealth = 2000;
     public int currentHealth;
 
     //public EnemyAI enemyAI;
     public ToggleUI toggle;
     public Desativador barraVida;
-
-    [SerializeField] private Transform vfxHit;
+    public HealthBarScript barraVida2;
 
     void Start(){
         currentHealth = maxHealth;
+        barraVida2.SetMaxHealth(maxHealth);
     }
 
     void Update(){
@@ -29,8 +29,8 @@ public class BossHealth : MonoBehaviour
 
         if(collision.gameObject.name == "Bullet2(Clone)"){
             TakeDamage(35);
+            barraVida2.SetHealth(currentHealth);
             toggle.HitMarker();
-            //Instantiate(vfxHit, transform.position, Quaternion.identity);
         }
     }
     

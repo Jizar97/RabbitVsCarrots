@@ -21,9 +21,10 @@ public class TelaHacking : MonoBehaviour
 
     public bool fim, completou;
 
-    int i=1, camada=1;
+    public int i=1, camada=1;
     
     public void Setup() {
+        player.podeDisparar = false;
         player.playerLiberado = false;
         gameObject.SetActive(true);
         sucesso.Desativar();
@@ -123,6 +124,7 @@ public class TelaHacking : MonoBehaviour
         camera1.Reativar();
         camera2.Reativar();
         player.playerLiberado = true;
+        player.podeDisparar = true;
     }
     
 }

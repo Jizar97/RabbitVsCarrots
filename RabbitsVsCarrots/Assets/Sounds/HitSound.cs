@@ -6,6 +6,8 @@ public class HitSound : MonoBehaviour
 {
     AudioSource animationSoundPlayer;
 
+    public AudioClip desativando;
+
     //SerializeField] private Transform vfxFire;
 
 
@@ -22,7 +24,7 @@ public class HitSound : MonoBehaviour
 
 
     public void Toca() {
-        animationSoundPlayer.Play();
-        //Instantiate(vfxFire, transform.position, Quaternion.identity);
+        Debug.Log ("ovo toca essa porra");
+        GetComponent<AudioSource>().PlayOneShot(desativando);
     }
 }
