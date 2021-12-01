@@ -49,7 +49,6 @@ public class Enemy_Animacoes : MonoBehaviour {
             AudioTocando = false;
             AudioDuracao = 0;
 
-        Debug.Log ("Audio Trocado");
         }
 
         if (AudioTocando == false) {
@@ -69,7 +68,6 @@ public class Enemy_Animacoes : MonoBehaviour {
         if (GetComponent<AudioSource> ().clip != Passear) {
             AudioTocando = false;
             AudioDuracao = 0;
-            Debug.Log ("Audio Trocado");
         }
 
         if (AudioTocando == false) {
@@ -88,7 +86,6 @@ public class Enemy_Animacoes : MonoBehaviour {
             if (GetComponent<AudioSource> ().clip != Perseguir) {
                 AudioTocando = false;
                 AudioDuracao = 0;
-                Debug.Log ("Audio Trocado");
             }
 
             if (AudioTocando == false) {

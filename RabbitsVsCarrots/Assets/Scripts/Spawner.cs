@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
     public void Spawn(int onda){
 
         i++;
-
+        
         for (int j = 1; j <= i; j++){
             GameObject.Instantiate(enemy, transform.position, Quaternion.identity);
         }

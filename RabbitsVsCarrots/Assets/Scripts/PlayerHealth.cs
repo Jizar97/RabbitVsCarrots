@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
 
     public HealthBarScript healthBar;
     public GameOver gameOverScreen;
+    public Animator animator;
 
     void Start(){
         currentHealth = maxHealth;
@@ -17,20 +18,20 @@ public class PlayerHealth : MonoBehaviour
 
     void Update(){
         if(currentHealth <= 0){
-            Debug.Log ("Morri");
-            gameOver();
+            GetComponent<Animator>().SetBool ("Morreu", true);
+            StartCoroutine(gameOver());
         }
     }
 
     public void TakeDamage(int damage){
         currentHealth -= damage;
-
         healthBar.SetHealth(currentHealth);
     }
 
-    private void gameOver(){
-        Destroy(gameObject);
+    IEnumerator gameOver(){
+        //Destroy(gameObject);
         Cursor.lockState = CursorLockMode.None;
+        yield return new WaitForSeconds(3);
         gameOverScreen.Setup();
     }
 }
