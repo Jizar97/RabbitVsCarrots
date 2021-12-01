@@ -15563,6 +15563,7 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 1311284649}
   gameOverScreen: {fileID: 1583499605}
+  animator: {fileID: 0}
 --- !u!4 &1418803346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 469502, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}

@@ -12,20 +12,23 @@ public class ControleFase2 : MonoBehaviour
     public Desativador barreira;
     public Slider slider;
     public Text texto;
+    public Desativador avisos;
+    public Desativador objetivos;
+    public Text textoAvisos;
+
     private float timeRemaining;
     private const float timeMax = 10f;
 
     int fase = 1;
 
-
-    //private bool stopTimer;
-
-    // Start is called before the first frame update
-
+    void Start(){
+        StartCoroutine(Mensagens());
+    }
 
     // Update is called once per frame
     void Update()
     {   
+
         if(fase == 1){
             slider.value = CalculateSliderValue();
 
@@ -55,6 +58,13 @@ public class ControleFase2 : MonoBehaviour
     public void Setup(){
         texto.text = ("");
         timeRemaining = timeMax;
+    }
+
+    IEnumerator Mensagens(){
+        yield return new WaitForSeconds(5);
+        avisos.Reativar();
+        yield return new WaitForSeconds(10);
+        avisos.Desativar();
     }
 
 }
