@@ -26,7 +26,8 @@ public class ControleFase : MonoBehaviour
     public Desativador mostrarTexto;
     public Desativador barraDeVida;
     public Desativador inimigosUI;
-    public Desativador npc;
+    public Desativador npcDesativador;
+    public NPC npc;
     public Text texto;
 
     private int onda, inimigosVivos;
@@ -53,17 +54,20 @@ public class ControleFase : MonoBehaviour
 
             if(inimigosVivos == 0){
 
-            if(onda == 5){
-                StartCoroutine(Vitoria());
-            } else {
-                onda++;
-                uiWaveCount.SetNum(onda);
-                barraDeVida.Desativar();
-                inimigosUI.Desativar();
-                StartCoroutine(OndaX());
-                bloqueia = true;
+                if(onda == 5){
+                    StartCoroutine(Vitoria());
+                } else {
+                    onda++;
+                    uiWaveCount.SetNum(onda);
+                    barraDeVida.Desativar();
+                    inimigosUI.Desativar();
+                    StartCoroutine(OndaX());
+                    bloqueia = true;
+                }
             }
         }
+        if(npc.falou == true){
+            mostrarTexto.Desativar();
         }
     }
 
@@ -131,8 +135,12 @@ public class ControleFase : MonoBehaviour
         mostrarTexto.Reativar();
         texto.text = "VITORIA!!!";
         VictorySound();
-        //yield return new WaitForSeconds(5);
-        //mostrarTexto.Desativar();
+        yield return new WaitForSeconds(3);
+        mostrarTexto.Desativar();
+        yield return new WaitForSeconds(3);
+        mostrarTexto.Reativar();
+        npcDesativador.Reativar();
+        texto.text = "FALE COM O RENEGADO!";
     }
 
     private void VictorySound(){
@@ -140,16 +148,5 @@ public class ControleFase : MonoBehaviour
         GetComponent<AudioSource>().volume = 1.0f;
         GetComponent<AudioSource> ().PlayOneShot(vitoria);
         fim = true;
-        bloqueia = true;
-        StartCoroutine(Espera(3));
-        mostrarTexto.Desativar();
-        npc.Reativar();
-
-
-    }
-
-    IEnumerator Espera(int tempo){
-        yield return new WaitForSeconds(tempo);
-        bloqueia = false;
     }
 }

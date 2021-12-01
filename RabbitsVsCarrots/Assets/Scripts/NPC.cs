@@ -11,7 +11,10 @@ public class NPC : Interactable {
     public Desativador crosshair;
     public Desativador textUI;
     public Text texto;
-    public Transform Player;
+    public Transform PlayerRef;
+    public PlayerController Player;
+
+    public bool falou = false;
 
 
     private void Start() {
@@ -24,7 +27,9 @@ public class NPC : Interactable {
     }
 
     public override void Interact() {
-        transform.LookAt(Player);
+        falou = true;
+        Player.playerLiberado = false;
+        transform.LookAt(PlayerRef);
         balao.Desativar();
         dialogo.Reativar();
         crosshair.Desativar();

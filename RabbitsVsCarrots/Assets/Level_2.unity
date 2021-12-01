@@ -8920,7 +8920,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 25
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -9181,6 +9181,7 @@ MonoBehaviour:
   mostrarTexto: {fileID: 0}
   barraDeVida: {fileID: 0}
   inimigosUI: {fileID: 0}
+  npcDesativador: {fileID: 0}
   npc: {fileID: 0}
   texto: {fileID: 0}
 --- !u!82 &830290611
@@ -12814,7 +12815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1178191102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12834,6 +12835,7 @@ MonoBehaviour:
   sucesso: {fileID: 683527894}
   camadaUI: {fileID: 469749607}
   loadingUI: {fileID: 570556152}
+  player: {fileID: 3562639474642056055}
   fim: 0
   completou: 0
 --- !u!114 &1178191103
@@ -25123,3 +25125,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9898b4644cf4e5848908a4f689c6fcd8, type: 3}
+--- !u!114 &3562639474642056055 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6537375344956122477, guid: 9898b4644cf4e5848908a4f689c6fcd8, type: 3}
+  m_PrefabInstance: {fileID: 3562639474642056054}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ce2a1865f19c84bab86790a7e7179d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

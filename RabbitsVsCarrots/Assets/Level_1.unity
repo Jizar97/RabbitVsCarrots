@@ -2567,7 +2567,9 @@ MonoBehaviour:
   crosshair: {fileID: 84976682}
   textUI: {fileID: 822639365}
   texto: {fileID: 449264334}
-  Player: {fileID: 3498015833377857630}
+  PlayerRef: {fileID: 3498015833377857630}
+  Player: {fileID: 2049134389}
+  falou: 0
 --- !u!114 &343496484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6628,7 +6630,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 25
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -6901,7 +6903,8 @@ MonoBehaviour:
   mostrarTexto: {fileID: 2099016609}
   barraDeVida: {fileID: 1311284651}
   inimigosUI: {fileID: 1419323064}
-  npc: {fileID: 343496484}
+  npcDesativador: {fileID: 343496484}
+  npc: {fileID: 343496483}
   texto: {fileID: 2099016606}
 --- !u!82 &830290611
 AudioSource:
@@ -16041,6 +16044,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9ef3b9c17d89b904da29c40b666de0ea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ef3b9c17d89b904da29c40b666de0ea, type: 3}
 --- !u!4 &2020297680 stripped
@@ -16213,6 +16220,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 469502, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
   m_PrefabInstance: {fileID: 991089275}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2049134389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6537375344956122477, guid: 9898b4644cf4e5848908a4f689c6fcd8, type: 3}
+  m_PrefabInstance: {fileID: 7023871920648757128}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ce2a1865f19c84bab86790a7e7179d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2055531689
 PrefabInstance:
   m_ObjectHideFlags: 0

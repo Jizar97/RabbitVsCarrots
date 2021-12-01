@@ -13,6 +13,7 @@ public class TelaHacking : MonoBehaviour
     public Sucesso sucesso;
     public Camada camadaUI;
     public Loading loadingUI;
+    public PlayerController player;
 
     string resultado, resultadoEsperado;
 
@@ -23,7 +24,7 @@ public class TelaHacking : MonoBehaviour
     int i=1, camada=1;
     
     public void Setup() {
-        //Time.timeScale = 0;
+        player.playerLiberado = false;
         gameObject.SetActive(true);
         sucesso.Desativar();
         camadaUI.Setup(camada);
@@ -121,7 +122,7 @@ public class TelaHacking : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         camera1.Reativar();
         camera2.Reativar();
-        //Time.timeScale = 1;
+        player.playerLiberado = true;
     }
     
 }

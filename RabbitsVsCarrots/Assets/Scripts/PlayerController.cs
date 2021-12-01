@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     int moveXAnimationParameterId;
     int moveZAnimationParameterId;
 
+    public bool playerLiberado = true;
     private bool podeDisparar = true;
     private float cronometroDisparo;
 
@@ -108,46 +109,50 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if(podeDisparar == false){
+        if (playerLiberado == true){
+
+            if(podeDisparar == false){
             cronometroDisparo += Time.deltaTime;
-        }
-        if(cronometroDisparo >= tempoDeDisparo){
-            podeDisparar = true;
-            cronometroDisparo = 0;
-        }
+            }
+            if(cronometroDisparo >= tempoDeDisparo){
+                podeDisparar = true;
+                cronometroDisparo = 0;
+            }
          
-        aimTarget.position = cameraTransform.position + cameraTransform.forward * aimDistance;
+            aimTarget.position = cameraTransform.position + cameraTransform.forward * aimDistance;
 
-        groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
+            groundedPlayer = controller.isGrounded;
+            if (groundedPlayer && playerVelocity.y < 0)
+            {
+                playerVelocity.y = 0f;
+            }
+
+            Vector2 input = moveAction.ReadValue<Vector2>(); 
+            currentAnimationBlendVector = Vector2.SmoothDamp(currentAnimationBlendVector, input, ref animationVelocity, animationSmoothTime);
+            Vector3 move = new Vector3(currentAnimationBlendVector.x, 0, currentAnimationBlendVector.y);
+            move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized;
+            move.y = 0f;
+            controller.Move(move * Time.deltaTime * playerSpeed);
+            // Blend Strafe Animation
+            animator.SetFloat(moveXAnimationParameterId, currentAnimationBlendVector.x);
+            animator.SetFloat(moveZAnimationParameterId, currentAnimationBlendVector.y);
+
+            // Changes the height position of the player..
+            if (jumpAction.triggered && groundedPlayer)
+            {
+                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                animator.CrossFade(jumpAnimation, animationPlayTransition);
+            }
+
+            playerVelocity.y += gravityValue * Time.deltaTime;
+            controller.Move(playerVelocity * Time.deltaTime);
+
+            //Rotate towards camera direction
+
+            Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
         }
-
-        Vector2 input = moveAction.ReadValue<Vector2>(); 
-        currentAnimationBlendVector = Vector2.SmoothDamp(currentAnimationBlendVector, input, ref animationVelocity, animationSmoothTime);
-        Vector3 move = new Vector3(currentAnimationBlendVector.x, 0, currentAnimationBlendVector.y);
-        move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized;
-        move.y = 0f;
-        controller.Move(move * Time.deltaTime * playerSpeed);
-        // Blend Strafe Animation
-        animator.SetFloat(moveXAnimationParameterId, currentAnimationBlendVector.x);
-        animator.SetFloat(moveZAnimationParameterId, currentAnimationBlendVector.y);
-
-        // Changes the height position of the player..
-        if (jumpAction.triggered && groundedPlayer)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-            animator.CrossFade(jumpAnimation, animationPlayTransition);
-        }
-
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
-
-        //Rotate towards camera direction
-
-        Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
     }
 }
