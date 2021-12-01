@@ -8,8 +8,6 @@ public class HitSound : MonoBehaviour
 
     public AudioClip desativando;
 
-    //SerializeField] private Transform vfxFire;
-
 
     void Start()
     {
@@ -24,7 +22,6 @@ public class HitSound : MonoBehaviour
 
 
     public void Toca() {
-        Debug.Log ("ovo toca essa porra");
         GetComponent<AudioSource>().PlayOneShot(desativando);
     }
 }

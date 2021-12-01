@@ -14,6 +14,7 @@ public class ControleFase2 : MonoBehaviour
 
     public TelaHacking hacking;
     public BossHealth boss;
+    public BossAI bossAI;
     public Desativador barreira;
     public HitSound barreiraSom;
     public Slider slider;
@@ -121,7 +122,7 @@ public class ControleFase2 : MonoBehaviour
     }
 
     void BossFight(){
-
+        bossAI.VendoOPlayer = true;
     }
 
 }
