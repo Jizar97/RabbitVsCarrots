@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform bulletParent;
     [SerializeField]
-    private float bulletHitMissDistance = 25f;
+    private float bulletHitMissDistance = 250f;
 
     [SerializeField]
     private float animationSmoothTime = 0.1f;

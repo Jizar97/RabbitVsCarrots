@@ -28,7 +28,7 @@ public class BossHealth : MonoBehaviour
     void OnCollisionEnter(Collision collision){
 
         if(collision.gameObject.name == "Bullet2(Clone)"){
-            TakeDamage(50);
+            TakeDamage(35);
             toggle.HitMarker();
             //Instantiate(vfxHit, transform.position, Quaternion.identity);
         }
