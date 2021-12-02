@@ -19,10 +19,11 @@ public class NPC : Interactable {
 
 
     public bool falou = false;
-
+    
+    Scene scene;
 
     private void Start() {
-        
+        scene = SceneManager.GetActiveScene();
     }
 
 
@@ -38,7 +39,7 @@ public class NPC : Interactable {
         dialogo.Reativar();
         crosshair.Desativar();
         textUI.Desativar();
-        if(boss.bossMorto == false){
+        if(scene.name == "Level_1"){
             StartCoroutine(Espera());
         } else {
             StartCoroutine(Espera2());
