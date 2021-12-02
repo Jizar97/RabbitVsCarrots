@@ -12,6 +12,8 @@ public class BossHealth : MonoBehaviour
     public Desativador barraVida;
     public HealthBarScript barraVida2;
 
+    public bool bossMorto = false;
+
     void Start(){
         currentHealth = maxHealth;
         barraVida2.SetMaxHealth(maxHealth);
@@ -46,7 +48,8 @@ public class BossHealth : MonoBehaviour
     }
 
     IEnumerator Destroi(){
-        yield return new WaitForSeconds(40);
-        //Destroy(gameObject);
+        bossMorto = true;
+        yield return new WaitForSeconds(2);
+        barraVida.Desativador();
     }
 }

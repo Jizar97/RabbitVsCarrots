@@ -13,6 +13,8 @@ public class NPC : Interactable {
     public Text texto;
     public Transform PlayerRef;
     public PlayerController Player;
+    public BossHealth boss;
+
 
     public bool falou = false;
 
@@ -34,7 +36,12 @@ public class NPC : Interactable {
         dialogo.Reativar();
         crosshair.Desativar();
         textUI.Desativar();
-        StartCoroutine(Espera());
+        if(boss.bossMorto == false){
+            StartCoroutine(Espera());
+        } else {
+            StartCoroutine(Espera2());
+        }
+        
     }
 
     IEnumerator Espera(){
@@ -62,5 +69,18 @@ public class NPC : Interactable {
         texto.text = "Ok, eu vou levá-lo até lá agora. Boa sorte.";
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Level_2");
+    }
+
+    IEnumerator Espera2(){
+        yield return new WaitForSeconds(5);
+        texto.text = "Nem acredito que acabou, e tudo graças a mim... claro, você também ajudou";
+        yield return new WaitForSeconds(4);
+        texto.text = "Formamos uma bela dupla, tenho que admitir";
+        yield return new WaitForSeconds(5);
+        texto.text = "...";
+        yield return new WaitForSeconds(5);
+        texto.text = "E aí, você bebe o quê?";
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("MainMenu");
     }
 }

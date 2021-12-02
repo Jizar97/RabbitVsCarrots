@@ -24,9 +24,10 @@ public class ControleFase2 : MonoBehaviour
     public PlayerController Player;
     public HitSound dial;
     public AudioClip bossMusic, vitoria;
+    public Desativador npcDesativador;
 
     private float timeRemaining;
-    private const float timeMax = 60f;
+    private const float timeMax = 25f;
 
     public int fase = 0;
 
@@ -80,11 +81,13 @@ public class ControleFase2 : MonoBehaviour
         yield return new WaitForSeconds(1);
         textoAvisos.text = ("Sobreviva ate que o sistema termine de carregar!!");
         avisos.Reativar();
+
         spawner1.Spawn(1);
         spawner2.Spawn(1);
         spawner3.Spawn(1);
         yield return new WaitForSeconds(4);
         avisos.Desativar();
+        /*
         yield return new WaitForSeconds(15);
         spawner1.Spawn(2);
         spawner2.Spawn(2);
@@ -93,6 +96,16 @@ public class ControleFase2 : MonoBehaviour
         spawner1.Spawn(2);
         spawner2.Spawn(2);
         spawner3.Spawn(2);
+        */
+        yield return new WaitForSeconds(20);
+    
+        if(hacking.completou == false) {
+            avisos.Reativar();
+            textoAvisos.text = "Volte ao terminal!!";
+            yield return new WaitForSeconds(3);
+            avisos.Desativar();
+        }
+        
    
     }
     
@@ -107,7 +120,6 @@ public class ControleFase2 : MonoBehaviour
     }
 
     IEnumerator ReleaseTheKracken(){
-        Debug.Log ("Entrei uma vez");
         yield return new WaitForSeconds(1);
         GetComponent<AudioSource>().Stop();
         barreiraSom.Toca();
@@ -117,6 +129,10 @@ public class ControleFase2 : MonoBehaviour
         boss.Acordar();
         fase++;
         BossFight();
+        avisos.Reativar();
+        textoAvisos.text = "MATE A RAINHA!!!";
+        yield return new WaitForSeconds(4);
+        avisos.Desativar();
     }
 
     void BossFight(){
@@ -136,7 +152,7 @@ public class ControleFase2 : MonoBehaviour
         avisos.Desativar();
         yield return new WaitForSeconds(2);
         avisos.Reativar();
-        //npcDesativador.Reativar();
+        npcDesativador.Reativar();
         textoAvisos.text = "FALE COM O RENEGADO!";
     }
 

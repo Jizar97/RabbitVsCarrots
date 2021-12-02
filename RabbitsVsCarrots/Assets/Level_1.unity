@@ -291,7 +291,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 217402383}
-  i: 0
   fase: 1
 --- !u!4 &44878462 stripped
 Transform:
@@ -348,7 +347,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 217402383}
-  i: 0
   fase: 1
 --- !u!33 &51167881
 MeshFilter:
@@ -11983,7 +11981,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 217402383}
-  i: 0
   fase: 1
 --- !u!4 &1409840904 stripped
 Transform:
@@ -12800,7 +12797,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 217402383}
-  i: 0
   fase: 1
 --- !u!4 &1530875374 stripped
 Transform:
