@@ -50,6 +50,6 @@ public class BossHealth : MonoBehaviour
     IEnumerator Destroi(){
         bossMorto = true;
         yield return new WaitForSeconds(2);
-        barraVida.Desativador();
+        barraVida.Desativar();
     }
 }
