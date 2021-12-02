@@ -27,7 +27,7 @@ public class ControleFase2 : MonoBehaviour
     public Desativador npcDesativador;
 
     private float timeRemaining;
-    private const float timeMax = 25f;
+    private const float timeMax = 60f;
 
     public int fase = 0;
 
@@ -87,7 +87,6 @@ public class ControleFase2 : MonoBehaviour
         spawner3.Spawn(1);
         yield return new WaitForSeconds(4);
         avisos.Desativar();
-        /*
         yield return new WaitForSeconds(15);
         spawner1.Spawn(2);
         spawner2.Spawn(2);
@@ -96,7 +95,6 @@ public class ControleFase2 : MonoBehaviour
         spawner1.Spawn(2);
         spawner2.Spawn(2);
         spawner3.Spawn(2);
-        */
         yield return new WaitForSeconds(20);
     
         if(hacking.completou == false) {

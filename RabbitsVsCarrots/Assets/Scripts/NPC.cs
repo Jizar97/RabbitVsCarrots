@@ -14,6 +14,8 @@ public class NPC : Interactable {
     public Transform PlayerRef;
     public PlayerController Player;
     public BossHealth boss;
+    public HitSound music;
+    public Desativador fim;
 
 
     public bool falou = false;
@@ -72,15 +74,18 @@ public class NPC : Interactable {
     }
 
     IEnumerator Espera2(){
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(6);
         texto.text = "Nem acredito que acabou, e tudo graças a mim... claro, você também ajudou";
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
         texto.text = "Formamos uma bela dupla, tenho que admitir";
         yield return new WaitForSeconds(5);
         texto.text = "...";
         yield return new WaitForSeconds(5);
         texto.text = "E aí, você bebe o quê?";
-        yield return new WaitForSeconds(5);
+        music.Toca();
+        yield return new WaitForSeconds(3);
+        fim.Reativar();
+        yield return new WaitForSeconds(8);
         SceneManager.LoadScene("MainMenu");
     }
 }
