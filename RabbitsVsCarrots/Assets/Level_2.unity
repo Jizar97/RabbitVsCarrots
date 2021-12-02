@@ -2408,6 +2408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desativando: {fileID: 0}
+  som2: {fileID: 0}
 --- !u!1001 &440307834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6872,6 +6873,7 @@ MonoBehaviour:
   camadaUI: {fileID: 469749607}
   loadingUI: {fileID: 570556152}
   player: {fileID: 3562639474642056055}
+  dial: {fileID: 1788060061}
   fim: 0
   completou: 0
   i: 1
@@ -10079,6 +10081,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc53df1ea4d906241ba5f7c046b3b485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1749844899 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6801818645094260380, guid: 3d0089afa93dfc143b9f0a271f842d56, type: 3}
+  m_PrefabInstance: {fileID: 6801818645760859455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149466992159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e2c85fca7e04b646a1f40e9b2c7fe92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1752640550
 GameObject:
   m_ObjectHideFlags: 0
@@ -10202,6 +10215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desativando: {fileID: 8300000, guid: 12369a2847ce21446a69f2cb075c4b83, type: 3}
+  som2: {fileID: 0}
 --- !u!82 &1752640557
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10214,7 +10228,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 12369a2847ce21446a69f2cb075c4b83, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.366
+  m_Volume: 0.527
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -10883,6 +10897,8 @@ GameObject:
   - component: {fileID: 1788060062}
   - component: {fileID: 1788060060}
   - component: {fileID: 1788060059}
+  - component: {fileID: 1788060064}
+  - component: {fileID: 1788060061}
   m_Layer: 6
   m_Name: Terminal
   m_TagString: Untagged
@@ -10917,6 +10933,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1788060061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788060058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 613ea8f5ceaa5c9429697f097e043bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  desativando: {fileID: 8300000, guid: 2f5000a90a10be54bb626163a727eae0, type: 3}
+  som2: {fileID: 8300000, guid: b461a574b50c91f44b42bb0de80b4576, type: 3}
 --- !u!33 &1788060062
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10941,6 +10971,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 91.629, z: 0}
+--- !u!82 &1788060064
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788060058}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.63
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10.8
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1812375672
 GameObject:
   m_ObjectHideFlags: 0
@@ -11600,8 +11726,8 @@ MonoBehaviour:
   spawner2: {fileID: 324501407}
   spawner3: {fileID: 1436204241}
   hacking: {fileID: 1178191102}
-  boss: {fileID: 0}
-  bossAI: {fileID: 0}
+  boss: {fileID: 1749844899}
+  bossAI: {fileID: 919132149466992160}
   barreira: {fileID: 1752640555}
   barreiraSom: {fileID: 1752640556}
   slider: {fileID: 570556151}
@@ -11609,6 +11735,11 @@ MonoBehaviour:
   avisos: {fileID: 84982573}
   textoAvisos: {fileID: 84982574}
   Player: {fileID: 3562639474642056055}
+  dial: {fileID: 1788060061}
+  bossMusic: {fileID: 8300000, guid: 008bf718e498bda4a9aaa7652a8d1bca, type: 3}
+  vitoria: {fileID: 8300000, guid: 4be768a9472749c49ad23981ea20b4e4, type: 3}
+  fase: 1
+  entreiNaRotina: 0
 --- !u!82 &1915730110
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11621,7 +11752,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 78c4fe5d9f881a74c94334387185cfe9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.549
+  m_Volume: 0.431
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -12662,9 +12793,9 @@ MonoBehaviour:
   Player: {fileID: 348812886}
   DistanciaDePercepcao: 200
   DistanciaDeSeguir: 150
-  DistanciaDeAtacar: 10
+  DistanciaDeAtacar: 15
   VelocidadeDePasseio: 3
-  VelocidadeDePerseguicao: 6
+  VelocidadeDePerseguicao: 8
   TempoPorAtaque: 1.5
   DanoDoInimigo: 30
   VendoOPlayer: 0
@@ -14998,6 +15129,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6801818645094260380, guid: 3d0089afa93dfc143b9f0a271f842d56, type: 3}
+      propertyPath: bossAI
+      value: 
+      objectReference: {fileID: 919132149466992160}
     - target: {fileID: 6801818645094260380, guid: 3d0089afa93dfc143b9f0a271f842d56, type: 3}
       propertyPath: toggle
       value: 

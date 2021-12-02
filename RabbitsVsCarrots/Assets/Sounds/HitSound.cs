@@ -6,7 +6,7 @@ public class HitSound : MonoBehaviour
 {
     AudioSource animationSoundPlayer;
 
-    public AudioClip desativando;
+    public AudioClip desativando, som2;
 
 
     void Start()
@@ -23,5 +23,9 @@ public class HitSound : MonoBehaviour
 
     public void Toca() {
         GetComponent<AudioSource>().PlayOneShot(desativando);
+    }
+
+    public void Toca2() {
+        GetComponent<AudioSource>().PlayOneShot(som2);
     }
 }

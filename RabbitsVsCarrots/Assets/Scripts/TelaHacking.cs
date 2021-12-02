@@ -14,6 +14,7 @@ public class TelaHacking : MonoBehaviour
     public Camada camadaUI;
     public Loading loadingUI;
     public PlayerController player;
+    public HitSound dial;
 
     string resultado, resultadoEsperado;
 
@@ -91,6 +92,7 @@ public class TelaHacking : MonoBehaviour
                     fim = true;
                     completou = true;
                     loadingUI.Setup();
+                    dial.Toca2();
                     Exit();
                 } else {
                     camada++;
@@ -106,16 +108,6 @@ public class TelaHacking : MonoBehaviour
         } else {
             sucesso.Setup(1);
         }
-    }
-    
-    public void Hackear(){
-        /*
-        pergunta.text = ("pintao");
-
-        if(passou == true){
-            barreira.Desativar();
-        }
-        */
     }
 
     public void Exit(){

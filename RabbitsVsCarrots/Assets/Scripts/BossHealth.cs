@@ -7,7 +7,7 @@ public class BossHealth : MonoBehaviour
     public int maxHealth = 2000;
     public int currentHealth;
 
-    //public EnemyAI enemyAI;
+    public BossAI bossAI;
     public ToggleUI toggle;
     public Desativador barraVida;
     public HealthBarScript barraVida2;
@@ -20,6 +20,8 @@ public class BossHealth : MonoBehaviour
     void Update(){
         if(currentHealth <= 0){
             //enemyAI.Morrer();
+            bossAI.VendoOPlayer = false;
+            bossAI.Morrer();
             StartCoroutine(Destroi());
             //destroiObj();
         }
@@ -44,7 +46,7 @@ public class BossHealth : MonoBehaviour
     }
 
     IEnumerator Destroi(){
-        yield return new WaitForSeconds(1);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(40);
+        //Destroy(gameObject);
     }
 }

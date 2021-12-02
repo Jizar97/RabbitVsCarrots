@@ -22,26 +22,28 @@ public class ControleFase2 : MonoBehaviour
     public Desativador avisos;
     public Text textoAvisos;
     public PlayerController Player;
+    public HitSound dial;
+    public AudioClip bossMusic, vitoria;
 
     private float timeRemaining;
-    private const float timeMax = 10f;
+    private const float timeMax = 60f;
 
-    int fase = 1;
+    public int fase = 0;
+
+    public int entreiNaRotina = 0;
 
     void Start(){
-        Player.playerLiberado = false;
         StartCoroutine(Mensagens());
         spawner1.fase = 2;
         spawner2.fase = 2;
         spawner3.fase = 2;
-
     }
 
     // Update is called once per frame
     void Update()
     {   
 
-        if(fase == 1){
+        if(entreiNaRotina == 0){
             slider.value = CalculateSliderValue();
 
             if(timeRemaining > 0){
@@ -52,12 +54,14 @@ public class ControleFase2 : MonoBehaviour
                 texto.text = ("Pronto!");
                 if(hacking.completou == true){
                     StartCoroutine(ReleaseTheKracken());
+                    entreiNaRotina++;
                 }
             }
         }
 
-        if(fase == 2){
-            
+        if (boss.currentHealth <= 0 && entreiNaRotina == 1){
+            StartCoroutine(Vitoria());
+            entreiNaRotina++;
         }
     }
 
@@ -68,9 +72,10 @@ public class ControleFase2 : MonoBehaviour
     public void Setup(){
         texto.text = ("");
         timeRemaining = timeMax;
-        //StartCoroutine(Spawnar());
+        dial.Toca();
+        StartCoroutine(Spawnar());
     }
-    /*
+    
     IEnumerator Spawnar(){
         yield return new WaitForSeconds(1);
         textoAvisos.text = ("Sobreviva ate que o sistema termine de carregar!!");
@@ -90,39 +95,49 @@ public class ControleFase2 : MonoBehaviour
         spawner3.Spawn(2);
    
     }
-    */
+    
 
 
     IEnumerator Mensagens(){
         yield return new WaitForSeconds(1);
         avisos.Reativar();
         yield return new WaitForSeconds(3);
-        Player.playerLiberado = true;
         yield return new WaitForSeconds(5);
         avisos.Desativar();
     }
 
     IEnumerator ReleaseTheKracken(){
+        Debug.Log ("Entrei uma vez");
         yield return new WaitForSeconds(1);
         GetComponent<AudioSource>().Stop();
         barreiraSom.Toca();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(8);
         barreira.Desativar();
         yield return new WaitForSeconds(1);
         boss.Acordar();
         fase++;
         BossFight();
-        /*
-        avisos.Reativar();
-        yield return new WaitForSeconds(3);
-        Player.playerLiberado = true;
-        yield return new WaitForSeconds(5);
-        avisos.Desativar();
-        */
     }
 
     void BossFight(){
+        GetComponent<AudioSource> ().clip = bossMusic;
+        GetComponent<AudioSource>().PlayOneShot(bossMusic);
         bossAI.VendoOPlayer = true;
+    }
+
+    IEnumerator Vitoria(){
+        yield return new WaitForSeconds(1);
+        GetComponent<AudioSource>().Stop();
+        avisos.Reativar();
+        textoAvisos.text = "VITORIA!!!";
+        GetComponent<AudioSource>().volume = 1.0f;
+        GetComponent<AudioSource>().PlayOneShot(vitoria);
+        yield return new WaitForSeconds(4);
+        avisos.Desativar();
+        yield return new WaitForSeconds(2);
+        avisos.Reativar();
+        //npcDesativador.Reativar();
+        textoAvisos.text = "FALE COM O RENEGADO!";
     }
 
 }
